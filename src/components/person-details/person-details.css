@@ -1,0 +1,14 @@
+.person-details-container {
+    margin-top: 3rem;
+}
+
+.person-details-img {
+    max-width: 250px;
+    max-height: 250px;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.person-details-body {
+    padding: .25rem;
+}

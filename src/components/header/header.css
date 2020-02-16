@@ -1,0 +1,21 @@
+.header {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.list-menu {
+    margin-left: 15px;
+}
+
+.header h3 a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header h3 a:hover {
+    color: #9fa8b2;
+}
+
+.list-menu li:hover {
+    background-color: #1d2f42;
+}
