@@ -9,7 +9,7 @@ const PersonDetails = () => {
 
           <div className="person-details-body">
               <h4>Luke Skywaker</h4>
-              <ul className="list-group-flush">
+              <ul className="list-group-flush person-details-body-characters">
                   <li className="list-group-item">
                       <span>Age:</span>
                       <span>25</span>

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../header/header";
-import RandomPlanet from "../random-planet/planet-details";
+import RandomPlanet from "../random-planet/random-planet";
 import ListItem from "../list-item/list-item";
 import PersonDetails from "../person-details/person-details";
 

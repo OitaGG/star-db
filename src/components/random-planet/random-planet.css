@@ -1,4 +1,5 @@
 .random-planet-container {
+    width: 100%;
     display: flex;
     padding: 2rem;
 }
@@ -15,4 +16,8 @@
 
 .random-planet-info-container .list-group-item {
     padding: .25rem;
+}
+
+.random-planet-info-characters {
+    padding: 0;
 }

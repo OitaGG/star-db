@@ -12,3 +12,7 @@
 .person-details-body {
     padding: .25rem;
 }
+
+.person-details-body-characters {
+    padding: 0;
+}
