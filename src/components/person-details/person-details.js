@@ -1,31 +1,75 @@
 import React, {Component} from "react";
 
 import './person-details.css'
+import SwapiService from "../../services/swapi-service";
+import Spinner from "../spinner/spinner";
+import ErrorIndicator from "../error-indicator/error-indicator";
+import PersonView from "./person-view/person-view";
 
-const PersonDetails = () => {
-    return(
-      <div className="person-details-container jumbotron d-flex">
-          <img className="person-details-img" src="https://starwars-visualguide.com/assets/img/characters/1.jpg"/>
+export default class PersonDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.swapiService = new SwapiService();
+        this.state = {
+            person: null,
+            loading: true,
+            error: false
+        }
+    }
 
-          <div className="person-details-body">
-              <h4>Luke Skywaker</h4>
-              <ul className="list-group-flush person-details-body-characters">
-                  <li className="list-group-item">
-                      <span>Age:</span>
-                      <span>25</span>
-                  </li>
-                  <li className="list-group-item">
-                      <span>Gender:</span>
-                      <span>Male</span>
-                  </li>
-                  <li className="list-group-item">
-                      <span>Eye color:</span>
-                      <span>Blue</span>
-                  </li>
-              </ul>
-          </div>
-      </div>
-    );
+    updatePerson = () =>{
+        const {id} = this.props;
+        if(!id) {
+            return;
+        }
+
+        this.swapiService
+            .getPerson(id)
+            .then((person) => {
+                this.setState({
+                    person,
+                    loading: false,
+                    error: false
+                })
+            })
+            .catch(this.onError)
+    };
+
+    componentDidMount() {
+        this.updatePerson();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.id !== this.props.id) {
+            this.setState({
+                loading: true
+            });
+            this.updatePerson(this.props.id)
+        }
+    }
+    
+    onError = () => {
+        this.setState({
+            loading: false,
+            error: true
+        })
+    };
+
+    render() {
+        const {person, loading, error} = this.state;
+        if(!person){
+            return <span>Select person from person list</span>
+        }
+        const hasData = !(loading || error);
+        const spinner = loading ? <Spinner /> : null;
+        const errorIndicator = error ? <ErrorIndicator/> : null;
+        const content = hasData ? <PersonView person={person}/> : null;
+        return(
+            <div className="person-details-container jumbotron d-flex">
+                {spinner}
+                {content}
+                {errorIndicator}
+            </div>
+        )
+    }
 };
-
-export default PersonDetails;

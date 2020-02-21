@@ -5,5 +5,10 @@
 .error-header {
     text-align: center;
     font-size: 2rem;
-    margin: 0;
+}
+
+.error-text {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
 }
