@@ -5,6 +5,7 @@ import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../services/swapi-service";
 
 import './random-planet.css'
+import ErrorHandler from "../error-handler/ErrorHandler";
 
 export default class RandomPlanet extends Component{
     constructor(props) {
@@ -48,6 +49,7 @@ export default class RandomPlanet extends Component{
             loading: false
         })
     };
+
     render() {
         const {planet, loading, error} = this.state;
         const hasData = !(loading || error);
@@ -56,11 +58,13 @@ export default class RandomPlanet extends Component{
         const content = hasData ? <PlanetView planet={planet}/> : null;
 
         return (
-            <div className="random-planet-container d-flex jumbotron rounded">
-                {spinner}
-                {content}
-                {errorIndicator}
-            </div>
+            <ErrorHandler>
+                <div className="random-planet-container d-flex jumbotron rounded">
+                    {spinner}
+                    {content}
+                    {errorIndicator}
+                </div>
+            </ErrorHandler>
         );
     }
 }

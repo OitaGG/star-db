@@ -2,25 +2,17 @@ import React, {Component} from "react";
 import Header from "../header/header";
 import RandomPlanet from "../random-planet/random-planet";
 import ToggleRandomPlanetButton from "../toggle-random-planet-button/toggle-random-planet-button";
-import ErrorIndicator from "../error-indicator/error-indicator";
-
-import './app.css'
 import PeoplePage from "../people-page/people-page";
+import ErrorHandler from "../error-handler/ErrorHandler";
+import './app.css'
 
 export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showRandomPlanet: true,
-            error: false
         };
-    }
-
-    componentDidCatch() {
-        this.setState({
-            error: true
-        });
-    }
+    };
 
     toggleRandomPlanet = () => {
         this.setState({
@@ -29,18 +21,17 @@ export default class App extends Component {
     };
 
     render() {
-        const {showRandomPlanet, error} = this.state;
-        if(error){
-            return <ErrorIndicator />
-        }
+        const {showRandomPlanet} = this.state;
         const randomPlanetView = showRandomPlanet ? <RandomPlanet /> : null;
         return(
-            <div className="app-container">
-                <Header/>
-                {randomPlanetView}
-                <ToggleRandomPlanetButton togglePlanet={() => this.toggleRandomPlanet()}/>
-                <PeoplePage/>
-            </div>
+            <ErrorHandler>
+                <div className="app-container">
+                    <Header/>
+                    {randomPlanetView}
+                    <ToggleRandomPlanetButton togglePlanet={() => this.toggleRandomPlanet()}/>
+                    <PeoplePage/>
+                </div>
+            </ErrorHandler>
         );
     }
 };

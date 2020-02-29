@@ -3,8 +3,9 @@
 }
 
 .error-header {
+    display: block;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .error-text {
