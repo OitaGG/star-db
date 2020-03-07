@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from 'prop-types';
 import './toggle-random-planet-button.css'
 
 const ToggleRandomPlanet = ({togglePlanet}) => {
@@ -11,6 +11,10 @@ const ToggleRandomPlanet = ({togglePlanet}) => {
             Toggle Random Planet
         </button>
     );
+};
+
+ToggleRandomPlanet.propTypes = {
+    togglePlanet: PropTypes.func
 };
 
 export default ToggleRandomPlanet

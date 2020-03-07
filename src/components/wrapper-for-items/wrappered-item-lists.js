@@ -1,4 +1,3 @@
-import React from "react";
 import ListItem from "../list-item/list-item";
 import {hocDataWrapperForList} from "./wrapper/hoc-data-component";
 import SwapiService from "../../services/swapi-service";

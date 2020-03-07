@@ -26,7 +26,7 @@ const hocDataWrapperForList = (View, getData) => {
 };
 
 
-const hocDataWrapperForDetails = (View, getData, getImageUrl) => {
+const hocDataWrapperForDetails = (View, getData, getImageUrl, body) => {
     return class extends Component {
         constructor(props) {
             super(props);
@@ -77,7 +77,14 @@ const hocDataWrapperForDetails = (View, getData, getImageUrl) => {
 
         render() {
             const {item, image, loading, error} = this.state;
-            return <View {...this.props} item={item} image={image} loading={loading} error={error}/>
+            return (<View
+                        {...this.props}
+                        item={item}
+                        image={image}
+                        loading={loading}
+                        error={error}>
+                        {body.props.children}
+                    </View>)
         }
     }
 };

@@ -3,7 +3,6 @@ import Row from "../../row/Row";
 import ErrorHandler from "../../error-handler/ErrorHandler";
 import {PlanetList} from "../../wrapper-for-items/wrappered-item-lists";
 import {PlanetDetails} from "../../wrapper-for-items/wrappered-item-details";
-import {Record} from "../../item-details/item-view/item-view";
 
 
 export default class PlanetPage extends Component {
@@ -27,12 +26,7 @@ export default class PlanetPage extends Component {
                 onItemSelected={this.onItemSelected}
                 renderLabel={(item) => <span>{item.name}</span>}
             />);
-        const planetView = (
-            <PlanetDetails id={selectedPlanet}>
-                <Record field="population" label="Population: "/>
-                <Record field="rotationPeriod" label="Rotation Period: "/>
-                <Record field="diameter" label="Diameter: "/>
-            </PlanetDetails>);
+        const planetView = <PlanetDetails id={selectedPlanet}/>;
         return(
             <ErrorHandler>
                 <Row leftBar={itemList} rightBar={planetView}/>

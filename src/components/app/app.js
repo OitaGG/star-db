@@ -7,7 +7,7 @@ import PlanetPage from "../pages/planet-page/planet-page";
 import StarshipPage from "../pages/starship-page/starship-page";
 import ErrorHandler from "../error-handler/ErrorHandler";
 import SwapiService from "../../services/swapi-service";
-import {Provider} from "../swapi-service-context/swapi-service-context";
+import {SwapiServiceContext} from "../swapi-service-context/swapi-service-context";
 import './app.css'
 
 export default class App extends Component {
@@ -30,7 +30,7 @@ export default class App extends Component {
         const randomPlanetView = showRandomPlanet ? <RandomPlanet /> : null;
         return(
             <ErrorHandler>
-                <Provider value={this.swapiService}>
+                <SwapiServiceContext.Provider value={this.swapiService}>
                     <div className="app-container">
                         <Header/>
                         {randomPlanetView}
@@ -39,7 +39,7 @@ export default class App extends Component {
                         <PlanetPage/>
                         <StarshipPage/>
                     </div>
-                </Provider>
+                </SwapiServiceContext.Provider>
             </ErrorHandler>
         );
     }

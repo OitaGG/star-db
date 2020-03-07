@@ -1,19 +1,19 @@
-.person-details-container {
+.item-details-container {
     margin: 0;
     border: 1px solid #444;
 }
 
-.person-details-img {
+.item-details-img {
     max-width: 250px;
     max-height: 250px;
     margin-right: 1rem;
     border-radius: 10px;
 }
 
-.person-details-body {
+.item-details-body {
     padding: .25rem;
 }
 
-.person-details-body-characters {
+.item-details-body-characters {
     padding: 0;
 }

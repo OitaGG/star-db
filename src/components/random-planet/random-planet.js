@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import Spinner from "../spinner/spinner";
-import PlanetView from "./planet-view/planet-view";
 import ErrorIndicator from "../error-indicator/error-indicator";
-import SwapiService from "../../services/swapi-service";
-
 import './random-planet.css'
 import ErrorHandler from "../error-handler/ErrorHandler";
+import {SwapiServiceContext} from "../swapi-service-context/swapi-service-context";
+import {PlanetDetails} from "../wrapper-for-items/wrappered-item-details";
 
 export default class RandomPlanet extends Component{
+    static contextType = SwapiServiceContext;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -18,9 +19,8 @@ export default class RandomPlanet extends Component{
     }
 
     componentDidMount() {
-        this.swapiService = new SwapiService();
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet,6000);
+        this.interval = setInterval(this.updatePlanet,10000);
     }
 
     componentWillUnmount() {
@@ -37,7 +37,8 @@ export default class RandomPlanet extends Component{
 
     updatePlanet = () => {
         const id = Math.floor(Math.random()*25) + 2;
-        this.swapiService
+        const swapiService = this.context;
+        swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError)
@@ -55,13 +56,14 @@ export default class RandomPlanet extends Component{
         const hasData = !(loading || error);
         const spinner = loading ? <Spinner/> : null;
         const errorIndicator = error ? <ErrorIndicator/> : null;
-        const content = hasData ? <PlanetView planet={planet}/> : null;
+        const planetView = hasData ? <PlanetDetails id={planet.id} classname="random-planet-container"/> : null;
+
 
         return (
             <ErrorHandler>
                 <div className="random-planet-container d-flex jumbotron rounded">
                     {spinner}
-                    {content}
+                    {planetView}
                     {errorIndicator}
                 </div>
             </ErrorHandler>

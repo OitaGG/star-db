@@ -3,8 +3,6 @@ import Row from "../../row/Row";
 import ErrorHandler from "../../error-handler/ErrorHandler";
 import {PersonList} from "../../wrapper-for-items/wrappered-item-lists";
 import {PersonDetails} from "../../wrapper-for-items/wrappered-item-details";
-import {Record} from "../../item-details/item-view/item-view";
-
 import './people-page.css'
 
 export default class PeoplePage extends Component {
@@ -28,15 +26,10 @@ export default class PeoplePage extends Component {
                 onItemSelected={this.onItemSelected}
                 renderLabel={(item) => <span>{item.name}<br/> Birth Date: {item.birthYear}</span>}
             />);
-        const peopleView = (
-            <PersonDetails id={selectedPerson}>
-                <Record field="gender" label="Gender: "/>
-                <Record field="birthYear" label="Birth Year: "/>
-                <Record field="height" label="Height: "/>
-            </PersonDetails>);
+        const peopleDetails = <PersonDetails id={selectedPerson}/>;
         return(
             <ErrorHandler>
-                <Row leftBar={itemList} rightBar={peopleView}/>
+                <Row leftBar={itemList} rightBar={peopleDetails}/>
             </ErrorHandler>
         );
     }

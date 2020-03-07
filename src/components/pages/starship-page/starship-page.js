@@ -3,7 +3,6 @@ import Row from "../../row/Row";
 import ErrorHandler from "../../error-handler/ErrorHandler";
 import {StarshipList} from "../../wrapper-for-items/wrappered-item-lists";
 import {StarshipDetails} from "../../wrapper-for-items/wrappered-item-details";
-import {Record} from "../../item-details/item-view/item-view";
 
 export default class StarshipPage extends Component {
     constructor(props) {
@@ -26,12 +25,7 @@ export default class StarshipPage extends Component {
                 onItemSelected={this.onItemSelected}
                 renderLabel={(item) => <span>{item.name}</span>}
             />);
-        const starshipView = (
-            <StarshipDetails id={selectedStarship}>
-                <Record field="model" label="Model: "/>
-                <Record field="passengers" label="Passengers: "/>
-                <Record field="crew" label="Crew: "/>
-            </StarshipDetails>);
+        const starshipView = <StarshipDetails id={selectedStarship}/>;
         return(
             <ErrorHandler>
                 <Row leftBar={itemList} rightBar={starshipView}/>

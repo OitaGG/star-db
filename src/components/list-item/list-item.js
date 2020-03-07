@@ -2,6 +2,7 @@ import React from "react";
 import Spinner from "../spinner/spinner";
 import './list-item.css'
 import ErrorHandler from "../error-handler/ErrorHandler";
+import PropTypes from 'prop-types';
 
 const ListItem = (props) => {
     const {data, renderLabel, onItemSelected} = props;
@@ -27,6 +28,12 @@ const ListItem = (props) => {
                 </ul>
             </div>
         </ErrorHandler>)
+};
+
+ListItem.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    renderLabel: PropTypes.func.isRequired,
+    onItemSelected: PropTypes.func.isRequired
 };
 
 export default ListItem;
