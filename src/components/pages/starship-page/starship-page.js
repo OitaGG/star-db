@@ -1,35 +1,22 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import Row from "../../row/Row";
 import ErrorHandler from "../../error-handler/ErrorHandler";
 import {StarshipList} from "../../wrapper-for-items/wrappered-item-lists";
 import {StarshipDetails} from "../../wrapper-for-items/wrappered-item-details";
 
-export default class StarshipPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedStarship: 3,
-        };
-    };
+const StarshipPage = () => {
+    const [selectedStarship, setSelectedStarship] = useState(3);
+    const itemList = (
+        <StarshipList
+            onItemSelected={(id) => setSelectedStarship(id)}
+            renderLabel={(item) => <span>{item.name}</span>}
+        />);
+    const starshipView = <StarshipDetails id={selectedStarship}/>;
+    return(
+        <ErrorHandler>
+            <Row leftBar={itemList} rightBar={starshipView}/>
+        </ErrorHandler>
+    );
+};
 
-    onItemSelected = (starshipId) => {
-        this.setState({
-            selectedStarship: starshipId
-        })
-    };
-
-    render() {
-        const {selectedStarship} = this.state;
-        const itemList = (
-            <StarshipList
-                onItemSelected={this.onItemSelected}
-                renderLabel={(item) => <span>{item.name}</span>}
-            />);
-        const starshipView = <StarshipDetails id={selectedStarship}/>;
-        return(
-            <ErrorHandler>
-                <Row leftBar={itemList} rightBar={starshipView}/>
-            </ErrorHandler>
-        );
-    }
-}
+export default StarshipPage;

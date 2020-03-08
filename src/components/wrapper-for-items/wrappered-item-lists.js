@@ -1,5 +1,5 @@
 import ListItem from "../list-item/list-item";
-import {hocDataWrapperForList} from "./wrapper/hoc-data-component";
+import {hocDataWrapperForList} from "./wrapper/hoc-data-wrappers";
 import SwapiService from "../../services/swapi-service";
 
 const {getAllPeople, getAllPlanets, getAllStarships} = new SwapiService();
